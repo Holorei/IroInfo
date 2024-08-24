@@ -1,4 +1,4 @@
-//import { rgbToHsv, rgbToHsl } from "./utils.js";
+import { rgbToHsv, rgbToHsl } from "./utils.js";
 
 document.getElementById('color-picker').addEventListener('click', async () => {
     console.log('Color picker button clicked');
@@ -27,12 +27,12 @@ document.getElementById('color-picker').addEventListener('click', async () => {
             const hsl = rgbToHsl(rgb[0], rgb[1], rgb[2]);
 
             //colorDisplay.style.backgroundColor = message.color;
-            colorDisplay.textContent = `Color: ${message.color}`;
-            // colorDisplay.innerHTML = `
-            //     <div>RGB: ${message.color}</div>
-            //     <div>HSV: ${hsv.h}°, ${hsv.s}%, ${hsv.v}%</div>
-            //     <div>HSL: ${hsl.h}°, ${hsl.s}%, ${hsl.l}%</div>
-            // `;
+            //colorDisplay.textContent = `Color: ${message.color}`;
+            colorDisplay.innerHTML = `
+                <div>RGB: ${message.color}</div>
+                <div>HSV: ${hsv.h}°, ${hsv.s}%, ${hsv.v}%</div>
+                <div>HSL: ${hsl.h}°, ${hsl.s}%, ${hsl.l}%</div>
+            `;
         }
     });
 });
