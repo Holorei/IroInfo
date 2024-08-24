@@ -1,9 +1,12 @@
+//import { rgbToHsv, rgbToHsl } from "./utils.js";
+
 document.getElementById('color-picker').addEventListener('click', async () => {
+    console.log('Color picker button clicked');
     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
     // Capture the visible tab as an image
     chrome.tabs.captureVisibleTab(null, { format: 'png' }, function (dataUrl) {
-        console.log(dataUrl)
+        console.log('Captured visible tab');
         // Pass the captured image
         chrome.scripting.executeScript({
             target: { tabId: tab.id },
@@ -14,11 +17,22 @@ document.getElementById('color-picker').addEventListener('click', async () => {
 
     // Listen for messages from the content script
     chrome.runtime.onMessage.addListener((message) => {
+        console.log('Color picked:', message.color);
         if (message.type === 'colorPicked') {
+
             // Display the picked color
             const colorDisplay = document.getElementById('color-display');
+            const rgb = message.color.match(/\d+/g).map(Number);
+            const hsv = rgbToHsv(rgb[0], rgb[1], rgb[2]);
+            const hsl = rgbToHsl(rgb[0], rgb[1], rgb[2]);
+
             //colorDisplay.style.backgroundColor = message.color;
             colorDisplay.textContent = `Color: ${message.color}`;
+            // colorDisplay.innerHTML = `
+            //     <div>RGB: ${message.color}</div>
+            //     <div>HSV: ${hsv.h}°, ${hsv.s}%, ${hsv.v}%</div>
+            //     <div>HSL: ${hsl.h}°, ${hsl.s}%, ${hsl.l}%</div>
+            // `;
         }
     });
 });
