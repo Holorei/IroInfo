@@ -10,9 +10,22 @@
             padding: 10px;
         }
         button {
-            width: 100%;
+            width: 50%;
             padding: 10px;
             font-size: 0.75rem;
+        }
+        #hsl-map {
+            width: 100%;
+            height: auto;
+            border: 0.01rem solid #ccc;
+        }
+        #color-marker {
+            position: absolute;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 30%;
+            border: 0.05rem solid black;
+            pointer-events: none;
         }
 
 
@@ -21,6 +34,8 @@
 <body>
     <button id="color-picker">Color Picker</button>
     <div id="color-display">Color Display</div>
+    <canvas id="hsl-map" width="400" height="300"></canvas>
+    <div id="color-marker"></div>
     <script type = "module" src="popup.js"></script>
 </body>
 </html>
