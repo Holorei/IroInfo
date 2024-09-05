@@ -1,3 +1,5 @@
+import * as THREE from './lib/three.module.js';
+
 export function rgbToHsv(r, g, b) {
     // Normalise Rgb values
     r /= 255;

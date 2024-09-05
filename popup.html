@@ -14,7 +14,7 @@
             padding: 10px;
             font-size: 0.75rem;
         }
-        #hsl-map {
+        #hsl-map, #hsl-sphere {
             width: 100%;
             height: auto;
             border: 0.01rem solid #ccc;
@@ -28,14 +28,17 @@
             pointer-events: none;
         }
 
-
     </style>
 </head>
 <body>
     <button id="color-picker">Color Picker</button>
     <div id="color-display">Color Display</div>
     <canvas id="hsl-map" width="400" height="300"></canvas>
+    <canvas id="hsl-sphere" width="400" height="400"></canvas>
     <div id="color-marker"></div>
     <script type = "module" src="popup.js"></script>
+    <input type="range" id="transparency-slider" min="0" max="100" value="50">
+<label for="transparency-slider">Sphere Transparency</label>
+
 </body>
 </html>
