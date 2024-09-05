@@ -108,7 +108,7 @@ let scene, camera, renderer, sphere, geometry;
 function setupScene() {
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
-    renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('hsl-sphere') });
+    renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('hsl-sphere'), antialias: true });
     renderer.setSize(250, 250);
 
     setupSphere();
@@ -122,8 +122,21 @@ function setupSphere() {
     const material = new THREE.MeshBasicMaterial({ vertexColors: true, wireframe: false, transparent: true, opacity: 0.5 });
     sphere = new THREE.Mesh(geometry, material);
     scene.add(sphere);
+    addYAxis(sphere, 2);
 
     createHslColorMap();
+}
+
+function addYAxis(object, length) {
+    const material = new THREE.LineBasicMaterial({ color: 999999 }); // Green Y-axis
+    const points = [
+        new THREE.Vector3(0, -length / 2, 0),  // Start point at -length/2 on the Y-axis
+        new THREE.Vector3(0, length / 2, 0)    // End point at length/2 on the Y-axis
+    ];
+    const geometry = new THREE.BufferGeometry().setFromPoints(points);
+    const yAxis = new THREE.Line(geometry, material);
+
+    object.add(yAxis);  // Add Y-axis to the object (sphere)
 }
 
 // Create the HSL color map on the sphere
