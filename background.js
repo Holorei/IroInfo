@@ -1,8 +1,13 @@
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.type === 'colorPicked') {
-        // Store color and any other actions you need to perform
-        chrome.storage.local.set({ pickedColor: message.color }, () => {
-            console.log("Color stored successfully:", message.color);
+        chrome.storage.local.get('pickedColor', (data) => {
+            if (data.pickedColor) {
+                sendResponse({color: data.pickedColor});
+            } else {
+                sendResponse({color: null});
+            }
         });
+        // keep the message channel open
+        return true;
     }
 });

@@ -121,10 +121,10 @@ export function highlightOnSphere(hsl) {
 
     markerMesh.position.copy(position);
     sphere.add(markerMesh);
-    console.log("Marker added as a child of the sphere");
+    console.log("Marker added");
 }
 
-// Animation loop for rendering the scene
+// Animation loop
 export function animate() {
     requestAnimationFrame(animate);
     renderer.render(scene, camera);
