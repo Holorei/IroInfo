@@ -59,6 +59,15 @@ export function rgbToHsl(r, g, b) {
     return { h: hue, s: Math.round(saturation * 100), l: Math.round(lightness * 100) };
 }
 
+export function hexToRgb(hex) {
+    const bigint = parseInt(hex.slice(1), 16);
+    return {
+        r: (bigint >> 16) & 255,
+        g: (bigint >> 8) & 255,
+        b: bigint & 255
+    };
+}
+
 export function drawHslMap() {
     const canvas = document.getElementById('hsl-map');
     const ctx = canvas.getContext('2d');
