@@ -19,6 +19,7 @@ export function setupColorPicker() {
 // Display the picked color in different formats (RGB, HSV, HSL)
 function displayClickedColor(sRGBHex) {
     const colorDisplay = document.getElementById('color-display');
+    const hlMap = document.getElementById('hl-map');
 
     // Convert sRGB hex to RGB
     const rgb = hexToRgb(sRGBHex);
@@ -32,6 +33,8 @@ function displayClickedColor(sRGBHex) {
         <div>Hex: ${sRGBHex} </div>
     `;
 
-    highlightHslMap(hsl.h, hsl.s, hsl.l);
+    if (hlMap.style.display === "block") {
+        highlightHslMap(hsl.h, hsl.s, hsl.l);
+    }
     highlightOnSphere(hsl);
 }

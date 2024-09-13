@@ -67,7 +67,7 @@ export function hexToRgb(hex) {
 }
 
 export function drawHslMap() {
-    const canvas = document.getElementById('hsl-map');
+    const canvas = document.getElementById('hl-map');
     const ctx = canvas.getContext('2d');
 
     for (let x = 0; x < canvas.width; x++) {
@@ -81,9 +81,8 @@ export function drawHslMap() {
 }
 
 export function highlightHslMap(h, s, l) {
-    const canvas = document.getElementById('hsl-map');
-    const marker = document.getElementById('color-marker');
-    const rect = canvas.getBoundingClientRect();  // Get the size and position of the canvas
+    const canvas = document.getElementById('hl-map');
+    const rect = canvas.getBoundingClientRect(); // Get the size and position of the canvas
 
     // Calculate the x and y position relative to the canvas size
     const x = (h / 360) * rect.width;
@@ -92,17 +91,29 @@ export function highlightHslMap(h, s, l) {
     console.log(`Highlighting HSL: h=${h}, s=${s}, l=${l}, x=${x}, y=${y}`);
 
     if (x >= 0 && y >= 0 && x <= rect.width && y <= rect.height) {
-        // Position the marker relative to the canvas
-        marker.style.left = `${rect.left + x - 5}px`; // Adjust for marker size
-        marker.style.top = `${rect.top + y - 5}px`;  // Adjust for marker size
-        marker.style.backgroundColor = `hsl(${h}, ${s}%, ${l}%)`;
-        marker.style.display = 'block';  // Ensure the marker is visible
+        // Create a new marker element
+        const newMarker = document.createElement('div');
+
+        newMarker.classList.add('color-marker');
+        newMarker.style.position = 'absolute';
+        newMarker.style.left = `${rect.left + x - 5}px`; // Adjust for marker size
+        newMarker.style.top = `${rect.top + y - 5}px`;   // Adjust for marker size
+        newMarker.style.width = '0.5rem';
+        newMarker.style.height = '0.5rem';
+        newMarker.style.borderRadius = '50%';
+        newMarker.style.border = '0.02rem solid black';
+        newMarker.style.backgroundColor = `hsl(${h}, ${s}%, ${l}%)`;
+
+        newMarker.classList.add('marker-for-hl-map');
+
+        canvas.parentElement.appendChild(newMarker);
     } else {
         console.error('Calculated marker position is out of bounds:', { x, y });
     }
 }
 
-export function shortCut(){
+
+export function displayShortCuts(){
 
     document.addEventListener('keydown', function (event) {
         if (event.altKey && event.key === 'h') {
@@ -114,3 +125,23 @@ export function shortCut(){
         }
     });
 }
+
+export function toggleMap(){
+
+    const hlMapLabel = document.getElementById('hl-map-label');
+    const hlMap = document.getElementById('hl-map');
+
+    
+    hlMapLabel.addEventListener('click', function() {
+        const markers = document.querySelectorAll('.marker-for-hl-map');
+        
+        if (hlMap.style.display === "none") {
+            hlMap.style.display = "block"; 
+            markers.forEach(marker => marker.style.display = 'block');
+        } else {
+            hlMap.style.display = "none";  
+            markers.forEach(marker => marker.style.display = 'none');
+        }
+    });
+}
+

@@ -8,14 +8,22 @@
 </head>
 <body>
     <div class="button-container">    
-        <button id="color-picker-hover">Hover Color Picker</button>
-        <button id="color-picker-click">Color Picker</button>
+        <button id="color-picker-hover" title="Alt+H">Hover Picker</button>
+        <button id="color-picker-click" title="Alt+C">Color Picker</button>
     </div>
-    <canvas id="hsl-map" width="400" height="300"></canvas>
+
+    <div id="hl-map-label">Hue-lightness Map</div>
+
+    <canvas id="hl-map" width="400" height="300"></canvas>
+
+    <div id="hsl-sphere-label">HSL Sphere</div>
+
     <canvas id="hsl-sphere" width="400" height="400"></canvas>
-    <div id="color-marker"></div>
+
     <script type = "module" src="popup.js"></script>
+
     <input type="range" id="transparency-slider" min="0" max="100" value="50">
+
     <div id="color-display"></div>
 
 </body>

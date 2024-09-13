@@ -11,7 +11,7 @@ export function setupHoverColorPicker() {
         if (isPicking) {
             // If picking is active, stop picking and remove event listeners
             isPicking = false;
-            colorPickerBtn.textContent = 'Hover Color Picker'; // Update button text
+            colorPickerBtn.textContent = 'Hover Picker'; // Update button text
             document.removeEventListener('mousemove', getColor);  // Remove hover listener
 
             // Remove the runtime message listener
@@ -44,6 +44,7 @@ export function setupHoverColorPicker() {
 // Display the picked color in different formats (RGB, HSV, HSL)
 function displayHoveredColor(rgbColor) {
     const colorDisplay = document.getElementById('color-display');
+    const hlMap = document.getElementById('hl-map');
     const rgb = rgbColor.match(/\d+/g).map(Number);
     const hsv = rgbToHsv(rgb[0], rgb[1], rgb[2]);
     const hsl = rgbToHsl(rgb[0], rgb[1], rgb[2]);
@@ -53,8 +54,10 @@ function displayHoveredColor(rgbColor) {
         <div>HSV: ${hsv.h}°, ${hsv.s}%, ${hsv.v}%</div>
         <div>HSL: ${hsl.h}°, ${hsl.s}%, ${hsl.l}%</div>
     `;
-
-    highlightHslMap(hsl.h, hsl.s, hsl.l);
+    if (hlMap.style.display === "block") {
+        highlightHslMap(hsl.h, hsl.s, hsl.l);
+    }
+    
     highlightOnSphere(hsl);
 }
 
