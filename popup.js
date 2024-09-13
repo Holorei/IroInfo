@@ -1,5 +1,5 @@
-import { rgbToHsv, rgbToHsl, drawHslMap, highlightHslMap, hexToRgb } from "./utils.js";
-import { setupScene, setupSliderControl, animate, highlightOnSphere } from "./scene.js";
+import {  drawHslMap, shortCut } from "./utils.js";
+import { setupScene, setupSliderControl, animate } from "./scene.js";
 import { setupHoverColorPicker } from "./hoverpicker.js";
 import { setupColorPicker } from "./colorpicker.js";
 
@@ -12,4 +12,5 @@ document.addEventListener('DOMContentLoaded', () => {
     setupSliderControl();
     drawHslMap();
     animate();
+    shortCut();
 });

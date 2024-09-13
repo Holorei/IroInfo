@@ -6,7 +6,7 @@ export function setupScene() {
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
     renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('hsl-sphere'), antialias: true });
-    renderer.setSize(250, 250);
+    renderer.setSize(240, 240);
 
     setupSphere();
     setupMouseControls();
@@ -90,6 +90,15 @@ function setupMouseControls() {
     });
 
     document.addEventListener('mouseup', () => isDragging = false);
+    
+    renderer.domElement.addEventListener('wheel', (event) => {
+        const zoomSpeed = 0.0005;
+
+        camera.position.z += event.deltaY * zoomSpeed;
+
+        // Clamp the zoom to prevent excessive zoom in or out
+        camera.position.z = Math.max(0.3, Math.min(3, camera.position.z));
+    });
 }
 
 // Setup transparency control slider

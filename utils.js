@@ -1,5 +1,3 @@
-import * as THREE from './lib/three.module.js';
-
 export function rgbToHsv(r, g, b) {
     // Normalise Rgb values
     r /= 255;
@@ -102,4 +100,17 @@ export function highlightHslMap(h, s, l) {
     } else {
         console.error('Calculated marker position is out of bounds:', { x, y });
     }
+}
+
+export function shortCut(){
+
+    document.addEventListener('keydown', function (event) {
+        if (event.altKey && event.key === 'h') {
+            document.getElementById('color-picker-hover').click();
+        }
+        
+        if (event.altKey && event.key === 'c') {
+            document.getElementById('color-picker-click').click();
+        }
+    });
 }

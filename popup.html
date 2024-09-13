@@ -4,41 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IroInfo</title>
-        <style>
-        body {
-            width: 15rem;
-            padding: 10px;
-        }
-        button {
-            width: 50%;
-            padding: 10px;
-            font-size: 0.75rem;
-        }
-        #hsl-map, #hsl-sphere {
-            width: 100%;
-            height: auto;
-            border: 0.01rem solid #ccc;
-        }
-        #color-marker {
-            position: absolute;
-            width: 1rem;
-            height: 1rem;
-            border-radius: 30%;
-            border: 0.05rem solid black;
-            pointer-events: none;
-        }
-
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <button id="color-picker-hover">Hover Color Picker</button>
-    <button id="color-picker-click">Color Picker</button>
-    <div id="color-display">Color Display</div>
+    <div class="button-container">    
+        <button id="color-picker-hover">Hover Color Picker</button>
+        <button id="color-picker-click">Color Picker</button>
+    </div>
     <canvas id="hsl-map" width="400" height="300"></canvas>
     <canvas id="hsl-sphere" width="400" height="400"></canvas>
     <div id="color-marker"></div>
     <script type = "module" src="popup.js"></script>
     <input type="range" id="transparency-slider" min="0" max="100" value="50">
+    <div id="color-display"></div>
 
 </body>
 </html>

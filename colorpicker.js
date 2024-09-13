@@ -29,6 +29,7 @@ function displayClickedColor(sRGBHex) {
         <div>RGB: rgb(${rgb.r}, ${rgb.g}, ${rgb.b})</div>
         <div>HSV: ${hsv.h}°, ${hsv.s}%, ${hsv.v}%</div>
         <div>HSL: ${hsl.h}°, ${hsl.s}%, ${hsl.l}%</div>
+        <div>Hex: ${sRGBHex} </div>
     `;
 
     highlightHslMap(hsl.h, hsl.s, hsl.l);

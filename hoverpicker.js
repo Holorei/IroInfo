@@ -11,7 +11,7 @@ export function setupHoverColorPicker() {
         if (isPicking) {
             // If picking is active, stop picking and remove event listeners
             isPicking = false;
-            colorPickerBtn.textContent = 'Start Hover Color Picker'; // Update button text
+            colorPickerBtn.textContent = 'Hover Color Picker'; // Update button text
             document.removeEventListener('mousemove', getColor);  // Remove hover listener
 
             // Remove the runtime message listener
@@ -21,7 +21,7 @@ export function setupHoverColorPicker() {
         } else {
             // If picking is not active, start picking
             isPicking = true;
-            colorPickerBtn.textContent = 'Stop Hover Color Picker'; // Update button text
+            colorPickerBtn.textContent = 'Stop Hover Picker'; // Update button text
 
             const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
@@ -82,7 +82,6 @@ chrome.runtime.sendMessage({type: 'colorPicked'}, function(response) {
     if (chrome.runtime.lastError) {
         console.warn("No receiver found for message:", chrome.runtime.lastError.message);
     } else {
-        // Handle the response (if needed)
         console.log("Message sent successfully", response);
     }
 });
