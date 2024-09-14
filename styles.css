@@ -61,10 +61,50 @@ opacity: .75;
 }
 
 #hsl-sphere-label{
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     font-weight: 500;
     color: #696969;
     text-align: center;
     padding-top: 1rem;
     padding-bottom: 0.3rem;
 }
+
+#transparency-slider{
+    appearance: none;
+    background: #adadad; 
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+    opacity: 0.7;
+}
+#transparency-slider:hover {
+    opacity: 1;
+}
+
+#transparency-slider::-webkit-slider-thumb {
+    -webkit-appearance: none; 
+    width: 1rem; 
+    height: 1rem; 
+    background: #696969;
+    cursor: pointer; 
+    border-radius: 50%; 
+}
+
+#bg-slider{
+    appearance: none;
+    background: #adadad; 
+    border-radius: 0.5rem;
+    opacity: 0.7;
+}
+#bg-slider:hover {
+    opacity: 1;
+}
+
+#bg-slider::-webkit-slider-thumb {
+    -webkit-appearance: none; 
+    width: 1rem; 
+    height: 1rem; 
+    background: #696969;
+    cursor: pointer; 
+    border-radius: 50%; 
+}
+

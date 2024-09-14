@@ -1,16 +1,31 @@
 import * as THREE from './lib/three.module.js';
-// Scene, camera, and renderer setup for 3D view
 let scene, camera, renderer, sphere, geometry;
 
 export function setupScene() {
     scene = new THREE.Scene();
-    camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+
+    // For perspective Camera
+    //camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+
+    const aspect = 1; 
+    const frustumSize = 2; 
+
+    const left = -frustumSize / 2;
+    const right = frustumSize / 2;
+    const top = frustumSize / 2;
+    const bottom = -frustumSize / 2;
+    
+    // For Orthographic Camera
+    camera = new THREE.OrthographicCamera(left, right, top, bottom, 0.1, 1000);
+
     renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('hsl-sphere'), antialias: true });
+    scene.background = new THREE.Color(0xd9d9d9);
     renderer.setSize(240, 240);
 
     setupSphere();
     setupMouseControls();
     camera.position.z = 2;
+
 }
 
 // Set up the sphere and create an HSL color map on it
@@ -74,8 +89,8 @@ function setupMouseControls() {
 
             const deltaRotationQuaternion = new THREE.Quaternion()
                 .setFromEuler(new THREE.Euler(
-                    THREE.MathUtils.degToRad(deltaMove.y * 0.3),
-                    THREE.MathUtils.degToRad(deltaMove.x * 0.3),
+                    THREE.MathUtils.degToRad(deltaMove.y * 0.5),
+                    THREE.MathUtils.degToRad(deltaMove.x * 0.5),
                     0,
                     'XYZ'
                 ));
@@ -94,14 +109,17 @@ function setupMouseControls() {
     renderer.domElement.addEventListener('wheel', (event) => {
         const zoomSpeed = 0.0005;
 
-        camera.position.z += event.deltaY * zoomSpeed;
+        // For perspective Camera
+        // camera.position.z += event.deltaY * zoomSpeed;
+        // camera.position.z = Math.max(0.3, Math.min(3, camera.position.z));
 
-        // Clamp the zoom to prevent excessive zoom in or out
-        camera.position.z = Math.max(0.3, Math.min(3, camera.position.z));
+        camera.zoom -= event.deltaY * zoomSpeed;
+        camera.zoom = Math.max(0.5, Math.min(3, camera.zoom));  
+        camera.updateProjectionMatrix();
     });
 }
 
-// Setup transparency control slider
+// Setup control sliders
 export function setupSliderControl() {
     const slider = document.getElementById('transparency-slider');
     slider.addEventListener('input', function () {
@@ -109,6 +127,12 @@ export function setupSliderControl() {
         sphere.material.opacity = opacity;
         console.log("Sphere transparency set to:", opacity);
     });
+    const bgSlider = document.getElementById('bg-slider');
+    bgSlider.addEventListener('input', function () {
+        const intensity = bgSlider.value / 100;
+        scene.background = new THREE.Color(intensity, intensity, intensity);
+    });
+
 }
 
 // Highlight a specific color on the sphere based on HSL values
