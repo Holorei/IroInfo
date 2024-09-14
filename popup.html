@@ -13,20 +13,26 @@
     </div>
 
     <div id="hl-map-label">Hue-lightness Map</div>
-
     <canvas id="hl-map" width="400" height="300"></canvas>
 
     <div id="hsl-sphere-label">HSL Sphere</div>
-
     <canvas id="hsl-sphere" width="400" height="400"></canvas>
+    
+    <div class="transparency-slider-container">
+        <input type="range" id="transparency-slider" min="0" max="100" value="50">
+        <span id="transparency-value">50</span>    
+    </div>
 
-    <script type = "module" src="popup.js"></script>
+    <div class="bg-slider-container">
+        <input type="range" id="bg-slider" min="0" max="100" value="70">
+        <span id="bg-value">70</span>   
+    </div>
 
-    <input type="range" id="transparency-slider" min="0" max="100" value="50">
-
-    <input type="range" id="bg-slider" min="0" max="100" value="85">
+    
 
     <div id="color-display"></div>
+
+    <script type = "module" src="popup.js"></script>
 
 </body>
 </html>

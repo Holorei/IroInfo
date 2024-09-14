@@ -121,16 +121,24 @@ function setupMouseControls() {
 
 // Setup control sliders
 export function setupSliderControl() {
-    const slider = document.getElementById('transparency-slider');
-    slider.addEventListener('input', function () {
-        const opacity = slider.value / 100;
+
+    const transparencySlider = document.getElementById('transparency-slider');
+    const transparencyValue = document.getElementById('transparency-value');
+
+    transparencySlider.addEventListener('input', function () {
+        const opacity = transparencySlider.value / 100;
         sphere.material.opacity = opacity;
-        console.log("Sphere transparency set to:", opacity);
+        transparencyValue.textContent = transparencySlider.value;
     });
+
     const bgSlider = document.getElementById('bg-slider');
+    const bgValue = document.getElementById('bg-value');
     bgSlider.addEventListener('input', function () {
-        const intensity = bgSlider.value / 100;
-        scene.background = new THREE.Color(intensity, intensity, intensity);
+        const lightness = bgSlider.value / 100;
+        let hslColor = new THREE.Color(0xd9d9d9).getHSL({});
+        hslColor.l = lightness;
+        scene.background.setHSL(hslColor.h, hslColor.s, hslColor.l);
+        bgValue.textContent = bgSlider.value;
     });
 
 }
