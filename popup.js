@@ -1,7 +1,7 @@
-import {  drawHslMap, displayShortCuts, toggleMap } from "./utils.js";
-import { setupScene, setupSliderControl, animate, exportSceneAsGLTF } from "./scene.js";
-import { setupHoverColorPicker } from "./hoverpicker.js";
-import { setupColorPicker } from "./colorpicker.js";
+import {  drawHslMap, displayShortCuts, toggleMap } from "./assets/scripts/utils.js";
+import { setupScene, setupSliderControl, animate, exportSceneAsGLTF } from "./assets/scripts/scene.js";
+import { setupHoverColorPicker } from "./assets/scripts/hoverpicker.js";
+import { setupColorPicker } from "./assets/scripts/colorpicker.js";
 
 
 // Main initialization after DOM is fully loaded
@@ -10,9 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
     setupColorPicker()
     setupScene();
     setupSliderControl();
-    drawHslMap();
-    animate();
     displayShortCuts();
     toggleMap();
+    drawHslMap();
     exportSceneAsGLTF();
+    animate();
 });

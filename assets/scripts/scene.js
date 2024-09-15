@@ -1,5 +1,5 @@
-import * as THREE from './lib/three.module.js';
-import { GLTFExporter } from './lib/GLTFExporter.js';
+import * as THREE from '../../lib/three.module.js';
+import { GLTFExporter } from '../../lib/GLTFExporter.js';
 
 let scene, camera, renderer, sphere, geometry, markers = [];
 
