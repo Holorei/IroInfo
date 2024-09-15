@@ -4,8 +4,8 @@ SezSphere is a chromium extension Inspired from IroSphere by タリラボ: https
 
 It displays colors in a HSL color sphere.
 
-![Screenshot2](./assets//screenshots/screenshot2.png)
-![Screenshot3](./assets//screenshots/screenshot3.png)
+![Screenshot2](https://raw.githubusercontent.com/Holorei/SezSphere/main/assets/screenshots/Screenshot2.png)
+![Screenshot3](https://raw.githubusercontent.com/Holorei/SezSphere/main/assets/screenshots/Screenshot3.png)
 
 ## Shortcuts：
 - Alt+H for hover picker.
@@ -13,4 +13,4 @@ It displays colors in a HSL color sphere.
 
 ## GLTF model
 Sphere scene can be downloaded as GLTF model.
-![Screenshot4](./assets//screenshots/screenshot4.png)
+![Screenshot4](https://raw.githubusercontent.com/Holorei/SezSphere/main/assets/screenshots/Screenshot4.png)
