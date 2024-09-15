@@ -18,17 +18,22 @@
     <div id="hsl-sphere-label">HSL Sphere</div>
     <canvas id="hsl-sphere" width="400" height="400"></canvas>
     
-    <div class="transparency-slider-container">
-        <input type="range" id="transparency-slider" min="0" max="100" value="50">
-        <span id="transparency-value">50</span>    
-    </div>
+    <div class="bottom-container">
+        
+        <div class="sliders">
+            <div class="transparency-slider-container">
+                <input type="range" id="transparency-slider" min="0" max="100" value="50">
+                <span id="transparency-value">50</span>    
+            </div>
+        
+            <div class="bg-slider-container">
+                <input type="range" id="bg-slider" min="0" max="100" value="70">
+                <span id="bg-value">70</span>   
+            </div>
+        </div>
 
-    <div class="bg-slider-container">
-        <input type="range" id="bg-slider" min="0" max="100" value="70">
-        <span id="bg-value">70</span>   
+        <button id="export-model">DL</button>
     </div>
-
-    
 
     <div id="color-display"></div>
 

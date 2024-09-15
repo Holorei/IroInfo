@@ -1,5 +1,8 @@
 import * as THREE from './lib/three.module.js';
-let scene, camera, renderer, sphere, geometry;
+import { GLTFExporter } from './lib/GLTFExporter.js';
+import { OBJExporter } from './lib/OBJExporter.js';
+
+let scene, camera, renderer, sphere, geometry, markers = [];
 
 export function setupScene() {
     scene = new THREE.Scene();
@@ -73,6 +76,40 @@ function createHslColorMap() {
     geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
 }
 
+// Highlight a specific color on the sphere based on HSL values
+export function highlightOnSphere(hsl) {
+    const h = hsl.h / 360; 
+    const s = hsl.s / 100; 
+    const l = hsl.l / 100;
+
+    const radius = 1; 
+
+    const y = (l * 2) - 1; // Map lightness (0 to 1) to Y position (-1 to 1)
+
+    // Saturation (S) controls distance from Y-axis (XZ-plane)
+    const distanceFromYAxis = s * Math.sqrt(1 - y * y); // Radial distance based on height (y)
+
+    // Hue (H) controls the angle around the Y-axis (rotation in XZ-plane)
+    const theta = h * Math.PI * 2; // Angle in radians
+
+    // Calculate X and Z based on angle (theta) and radial distance
+    const x = distanceFromYAxis * Math.cos(theta);
+    const z = distanceFromYAxis * Math.sin(theta);
+
+    const position = new THREE.Vector3(x, y, z);
+
+    const markerGeometry = new THREE.SphereGeometry(0.05, 16, 16);
+    const markerMaterial = new THREE.MeshBasicMaterial({ color: new THREE.Color().setHSL(h, s, l) });
+    const markerMesh = new THREE.Mesh(markerGeometry, markerMaterial);
+
+    markerMesh.position.copy(position);
+
+    sphere.add(markerMesh);
+    markers.push(markerMesh);
+
+    console.log("Marker added:", position);
+}
+
 // Handle mouse controls to rotate the sphere
 function setupMouseControls() {
     let isDragging = false;
@@ -143,27 +180,33 @@ export function setupSliderControl() {
 
 }
 
-// Highlight a specific color on the sphere based on HSL values
-export function highlightOnSphere(hsl) {
-    const h = hsl.h / 360;
-    const s = hsl.s / 100;
-    const l = hsl.l / 100;
 
-    const spherical = new THREE.Spherical();
-    spherical.theta = h * Math.PI * 2;
-    spherical.phi = (1 - l) * Math.PI;
-    spherical.radius = s;
+export function exportSceneAsGLTF() {
+    const exportBtn = document.getElementById('export-model');
+    const gltfExporter = new GLTFExporter();
 
-    const position = new THREE.Vector3().setFromSpherical(spherical);
+    exportBtn.addEventListener('click', function () {
+        const markersGroup = new THREE.Group();
 
-    const markerGeometry = new THREE.SphereGeometry(0.05, 16, 16);
-    const markerMaterial = new THREE.MeshBasicMaterial({ color: new THREE.Color().setHSL(h, s, l) });
-    const markerMesh = new THREE.Mesh(markerGeometry, markerMaterial);
+        markers.forEach(marker => {
+            markersGroup.add(marker);
+        });
 
-    markerMesh.position.copy(position);
-    sphere.add(markerMesh);
-    console.log("Marker added");
+        gltfExporter.parse(
+            markersGroup,
+            function (result) {
+                const json = JSON.stringify(result, null, 2);
+                const blob = new Blob([json], { type: 'application/json' });
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = 'scene.gltf'; 
+                link.click();
+            },
+            { binary: true } 
+        );
+    });
 }
+
 
 // Animation loop
 export function animate() {

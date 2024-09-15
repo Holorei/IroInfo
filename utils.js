@@ -66,6 +66,14 @@ export function hexToRgb(hex) {
     };
 }
 
+export function rgbToHex(r, g, b) {
+    const redHex = r.toString(16).padStart(2, '0');
+    const greenHex = g.toString(16).padStart(2, '0');
+    const blueHex = b.toString(16).padStart(2, '0');
+    
+    return `#${redHex}${greenHex}${blueHex}`;
+}
+
 export function drawHslMap() {
     const canvas = document.getElementById('hl-map');
     const ctx = canvas.getContext('2d');
@@ -100,8 +108,8 @@ export function highlightHslMap(h, s, l) {
         newMarker.style.top = `${rect.top + y - 5}px`;   // Adjust for marker size
         newMarker.style.width = '0.5rem';
         newMarker.style.height = '0.5rem';
-        newMarker.style.borderRadius = '50%';
-        newMarker.style.border = '0.02rem solid black';
+        newMarker.style.borderRadius = '30%';
+        newMarker.style.border = '0.01rem solid black';
         newMarker.style.backgroundColor = `hsl(${h}, ${s}%, ${l}%)`;
 
         newMarker.classList.add('marker-for-hl-map');
@@ -130,12 +138,13 @@ export function toggleMap(){
 
     const hlMapLabel = document.getElementById('hl-map-label');
     const hlMap = document.getElementById('hl-map');
+    console.log(hlMap.style.display)
 
     
     hlMapLabel.addEventListener('click', function() {
         const markers = document.querySelectorAll('.marker-for-hl-map');
         
-        if (hlMap.style.display === "none") {
+        if (hlMap.style.display === "none" || hlMap.style.display === "") {
             hlMap.style.display = "block"; 
             markers.forEach(marker => marker.style.display = 'block');
         } else {

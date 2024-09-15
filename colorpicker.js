@@ -27,10 +27,15 @@ function displayClickedColor(sRGBHex) {
     const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
 
     colorDisplay.innerHTML = `
-        <div>RGB: rgb(${rgb.r}, ${rgb.g}, ${rgb.b})</div>
-        <div>HSV: ${hsv.h}°, ${hsv.s}%, ${hsv.v}%</div>
-        <div>HSL: ${hsl.h}°, ${hsl.s}%, ${hsl.l}%</div>
-        <div>Hex: ${sRGBHex} </div>
+        <div> 
+            <div>RGB: rgb(${rgb.r}, ${rgb.g}, ${rgb.b})</div>
+            <div>HSV: ${hsv.h}°, ${hsv.s}%, ${hsv.v}%</div>
+        </div>
+        <div>
+            <div>HSL: ${hsl.h}°, ${hsl.s}%, ${hsl.l}%</div>
+            <div>Hex: ${sRGBHex} </div>
+        </div>
+
     `;
 
     if (hlMap.style.display === "block") {

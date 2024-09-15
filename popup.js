@@ -1,5 +1,5 @@
 import {  drawHslMap, displayShortCuts, toggleMap } from "./utils.js";
-import { setupScene, setupSliderControl, animate } from "./scene.js";
+import { setupScene, setupSliderControl, animate, exportSceneAsGLTF } from "./scene.js";
 import { setupHoverColorPicker } from "./hoverpicker.js";
 import { setupColorPicker } from "./colorpicker.js";
 
@@ -14,4 +14,5 @@ document.addEventListener('DOMContentLoaded', () => {
     animate();
     displayShortCuts();
     toggleMap();
+    exportSceneAsGLTF();
 });

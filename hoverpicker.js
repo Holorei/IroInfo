@@ -1,4 +1,4 @@
-import { rgbToHsv, rgbToHsl, highlightHslMap } from "./utils.js";
+import { rgbToHsv, rgbToHsl, highlightHslMap, rgbToHex } from "./utils.js";
 import { highlightOnSphere } from "./scene.js";
 // Setup the hover color picker and toggle it on button click
 export function setupHoverColorPicker() {
@@ -48,11 +48,17 @@ function displayHoveredColor(rgbColor) {
     const rgb = rgbColor.match(/\d+/g).map(Number);
     const hsv = rgbToHsv(rgb[0], rgb[1], rgb[2]);
     const hsl = rgbToHsl(rgb[0], rgb[1], rgb[2]);
+    const hex = rgbToHex(rgb[0], rgb[1], rgb[2]);
 
     colorDisplay.innerHTML = `
-        <div>RGB: ${rgbColor}</div>
-        <div>HSV: ${hsv.h}°, ${hsv.s}%, ${hsv.v}%</div>
-        <div>HSL: ${hsl.h}°, ${hsl.s}%, ${hsl.l}%</div>
+        <div> 
+            <div>RGB: ${rgbColor}</div>
+            <div>HSV: ${hsv.h}°, ${hsv.s}%, ${hsv.v}%</div>
+        </div>
+        <div>
+            <div>HSL: ${hsl.h}°, ${hsl.s}%, ${hsl.l}%</div>
+            <div>Hex: ${hex} </div>
+        </div>
     `;
     if (hlMap.style.display === "block") {
         highlightHslMap(hsl.h, hsl.s, hsl.l);

@@ -102,6 +102,12 @@ opacity: .75;
     color: #696969;
 }
 
+.bottom-container{
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+}
+
 .bg-slider-container{
     display: flex;
     margin-top: 0.5rem;
@@ -131,3 +137,24 @@ opacity: .75;
     margin-left: 0.5rem;
     color: #696969;
 }
+
+#export-model{
+    background-color: #adadad;
+    padding: 0.65rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-style: none;
+    border-radius: 0.5rem;
+    color: #696969;
+    cursor: pointer;
+}#export-model:hover,
+#export-model:active {
+opacity: .75;
+}
+
+#color-display{
+    display: flex; 
+    justify-content: space-between; 
+    margin-top: 1rem;
+}
+
