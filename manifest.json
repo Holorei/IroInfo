@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "SezSphere",
     "version": "1.0",
-    "description": "Chronium extension that picks on screen color and display related information.",
+    "description": "Chromium extension that picks on screen color and display related information.",
     "permissions": [
       "activeTab",
       "scripting",
