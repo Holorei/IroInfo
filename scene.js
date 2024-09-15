@@ -1,6 +1,5 @@
 import * as THREE from './lib/three.module.js';
 import { GLTFExporter } from './lib/GLTFExporter.js';
-import { OBJExporter } from './lib/OBJExporter.js';
 
 let scene, camera, renderer, sphere, geometry, markers = [];
 
