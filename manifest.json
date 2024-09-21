@@ -1,8 +1,13 @@
 {
     "manifest_version": 3,
-    "name": "SezSphere",
+    "name": "YanSephere",
     "version": "1.0",
     "description": "Chromium extension that picks on screen color and display related information.",
+    "icons": {
+      "16": "./assets/icons/icon_16x16.png",
+      "48": "./assets/icons/icon_48x48.png",
+      "128": "./assets/icons/icon_128x128.png"
+    },
     "permissions": [
       "activeTab",
       "scripting",
@@ -14,7 +19,7 @@
     },
     "action": {
       "default_popup": "popup.html",
-      "default_title": "SezSphere"
+      "default_title": "YanSephere"
     }
   }
   

@@ -1,6 +1,6 @@
-# SezSphere extension
+# IroSphereExt extension
 
-SezSphere is a chromium extension Inspired from IroSphere by タリラボ: https://github.com/TaliPhoto/IroSphereLegacy
+IroSphereExt is a chromium extension Inspired from IroSphere by タリラボ: https://github.com/TaliPhoto/IroSphereLegacy
 
 It displays colors in a HSL color sphere.
 
