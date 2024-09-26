@@ -76,24 +76,6 @@ function executeEyedropperScript(tabId, dataUrl) {
     });
 }
 
-//Adding listener to get the picked color even after popup closes
-// chrome.runtime.onMessage.addListener((message) => {
-//     if (message.type === 'colorPicked') {
-//         chrome.storage.local.get('pickedColor', (data) => {
-//             if (data.pickedColor) {
-//                 displayHoveredColor(data.pickedColor);
-//             }
-//         });
-//     }
-// });
-
-chrome.runtime.sendMessage({type: 'colorPicked'}, function(response) {
-    if (chrome.runtime.lastError) {
-        console.warn("No receiver found for message:", chrome.runtime.lastError.message);
-    } else {
-        console.log("Message sent successfully", response);
-    }
-});
 
 
 function activateEyedropper(screenshotDataUrl) {
