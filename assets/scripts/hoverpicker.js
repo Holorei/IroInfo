@@ -7,6 +7,7 @@ export function setupHoverColorPicker() {
     let getColor;  
     let messageListener;  // To store and remove the message listener
 
+
     colorPickerBtn.addEventListener('click', async () => {
         if (isPicking) {
             // If picking is active, stop picking and remove event listeners
@@ -29,15 +30,16 @@ export function setupHoverColorPicker() {
                 executeEyedropperScript(tab.id, dataUrl);
             });
 
-            // Listen for color messages from the content script
-            messageListener = (message) => {
-                if (message.type === 'colorPicked') {
-                    displayHoveredColor(message.color);
-                }
-            };
             chrome.runtime.onMessage.addListener(messageListener); // Attach listener
         }
     });
+
+    // Listen for color messages from the content script
+    messageListener = (message) => {
+        if (message.type === 'colorPicked') {
+            displayHoveredColor(message.color);
+        }
+    };
 
 }
 

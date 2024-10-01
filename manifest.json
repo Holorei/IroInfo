@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "IroSphereExt",
     "version": "1.0",
-    "description": "Chromium extension that picks on screen color and display related information.",
+    "description": "Picking and displaying color in a HSL sphere, and relevant information.",
     "icons": {
       "16": "./assets/icons/icon_16x16.png",
       "48": "./assets/icons/icon_48x48.png",
@@ -10,12 +10,9 @@
     },
     "permissions": [
       "activeTab",
-      "scripting",
-      "storage"
+      "scripting"
     ],
-    "background": {
-      "service_worker": "background.js"
-    },
+
     "action": {
       "default_popup": "popup.html",
       "default_title": "IroSphereExt"
