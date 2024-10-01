@@ -79,7 +79,6 @@ function executeEyedropperScript(tabId, dataUrl) {
 }
 
 
-
 function activateEyedropper(screenshotDataUrl) {
     const img = new Image();
     img.src = screenshotDataUrl;
